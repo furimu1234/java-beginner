@@ -7,7 +7,7 @@ public class answer { // いつもの
 		for (int one=0; numbers.length > one; one++) {
 			for (int two=0; numbers[one].length  > two; two++) {
 
-				System.out.println(pair + "ペア目: " + numbers[one][two]);
+				System.out.println(pair + "人目: " + numbers[one][two]);
 				
 				pair ++;
 			}
