@@ -1,43 +1,52 @@
-# ���K������Ă݂�
+# 問題-二重ループ
+---
 
-10 ~ 20�̊Ԉȉ��̏���������v���O�����������Ȃ����B
+numbersという大きな配列があります。
 
-10 ~ 20�̒l��������ϐ���`num`�Ƃ���
+その配列の中に更に小さな配列を挿入します。
 
-�܂��Atrue or false�������_���ɕϐ�`result`�ɑ�����A���̌��ʂŏo�͂��镶�͂�ς��邱�ƁB
+学校をイメージしてください。
 
-num �� 2�Ŋ���؂��l�ł���Aresult��true�̏ꍇ
-num �� 2 = 0 �ł��B (true = 1) �Əo�͂���
+学校という一つのまとまりの中にクラスという複数の纏まりがあります。
 
-num �� 2�Ŋ���؂��l�ł���Aresult��false�̏ꍇ
-num �� 2 = 0 ���Ǝv���܂��B (false = 0) �Əo�͂���
+つまり、学校=大きな配列, クラス=小さな配列となるのです。
 
-num �� 5�Ŋ���؂��l�ł���Aresult��true�̏ꍇ
-num �� 5 = 0 �ł��B (true = 1) �Əo�͂���
+今回は複数あるうちの一つのクラス(Aクラス)を例に問題を作りました。
 
-num �� 5�Ŋ���؂��l�ł���Aresult��false�̏ꍇ
-num �� 5 = 0 ���Ǝv���܂��B (false = 0) �Əo�͂���
+Aクラスの中で何人かに2人ずつのペアを作ってもらいましょう。
 
-��L�̂ǂ�ɂ����Ă͂܂�Ȃ��ꍇ
-num �͖��m�̐��l�ł��B"
+はい、3ペアが出来たようです。
 
-�܂������֌W�Ȃ�
--------------------------------------- �Əo�͂���(�n�C�t���̐����Ȃ�)
+しかし、合計人数が分からなくなってしまいました。
 
-#hint
+では、下のコードを参考にここでこの場にいる人数を数えてみてください。
+
+```
+小さな配列を求める変数を one  
+人数を求める変数を two  
+なん人目か数える変数を pair
+```
+とした時次のコードを読んで上の問題を解きなさい。
+
+
+---
+# hint
 
 ```java
-import java.util.Random; // �����_�����������߂̃v���O�C�������̃v���O�����ɓǂݍ���
 
-public class test {
+public class test { //いつもの
 
-	public static void main(String[] args) {
-		int num;
+	public static void main(String[] args) { //いつもの
+		
+		int[][] numbers = {{1, 2}, {3, 4}, {5, 6}}; // numbers変数という配列を作り、その中に3つ配列を作る (2次元配列)
+		
+		int pair = 1;
+		
 		for (?) {
-			Random random = new Random(); //�@���܂��Ȃ�
-			boolean result = random.nextBoolean(); // True or False �̂ǂ��炩��ϐ� result�Ƀv���O�����������ő������
-			
-			...(ry
+			for (?) {
+				System.out.println(pair + "人目" + )
+			}
+			pair++;
 		}	
 	}
 }
