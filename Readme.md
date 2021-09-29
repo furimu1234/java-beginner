@@ -200,7 +200,8 @@ class Sub{
     void dispKisetu(){ // メソッド
         System.out.println(kisetu);
     }
-}```
+}
+```
 
 ```python
 #python
