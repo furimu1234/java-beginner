@@ -561,3 +561,435 @@ System.out.println("コーラ1本" + tanka + "円です。");
 このようにすることが出来ます。
 
 わざわざ長いのを複数書く必要はありません。時間と労力の無駄です。
+
+
+# 期末解説
+
+```java
+
+public class Taisaku3_1{
+    public static void main(String[] args){
+
+        haruki.dispName();
+        haruki.dispWriter();
+
+    }
+}
+
+
+class Book{
+    String name = "ノルウェイの森";
+    String writer = "村上春樹";
+
+    void dispName(){
+
+    }
+
+}
+```
+
+スライドではこうなってましたね。
+
+Taiasku3_1クラスをまず、見てみます。
+
+haruki.~~となっているので、`haruki`が変数になっている事が分かります。
+しかし、`haruki`という変数はどこにも定義されていません。
+そのため
+
+```java
+
+public class Taisaku3_1{
+    public static void main(String[] args){
+
+        Book haruki = new Book();
+
+        haruki.dispName();
+        haruki.dispWriter();
+
+    }
+}
+
+
+class Book{
+    String name = "ノルウェイの森";
+    String writer = "村上春樹";
+
+    void dispName(){
+
+    }
+
+}
+```
+
+`haruki.dispName();`の上に`Book haruki = new Book();` と書いて変数を定義します。
+
+次にスライドの実行結果を確認します。一行目は名前、二行目で著者を出力しています。
+Taisaku3_1クラスで実行しているメソッドは`haruki.dispName();`と`haruki.dispWriter();`の二つになります。そのため、各メソッド1行ずつ出力する事が分かります。
+
+`class Book`を見てみます。`void dispName(){}`となっているので、ここはメソッドになりますが、中身がありません。
+メソッド名を読んでみると、デイスプネーム -> デイスプレイネーム -> 名前を表示となっています。変数にも`name`とありますね。この変数の中身を出力します。
+
+いつもなら、`set~`メソッドを作りますが、今回は変数に事前に指定されてるので要りません。
+
+出力形式を確認します。`本の名前は「ノルウェイの森」です`となっています。
+ノルウェイの森は変数に入ってるので、置き換えると`本の名前は「name」です`となります。
+文字列と変数は`+`で繋げる必要があるので、"本の名前は「"+name+"」です"となります
+
+出力方法は`System.out.print~~();`なので、
+
+```java
+
+public class Taisaku3_1{
+    public static void main(String[] args){
+
+        Book haruki = new Book();
+
+        haruki.dispName();
+        haruki.dispWriter();
+
+    }
+}
+
+
+class Book{
+    String name = "ノルウェイの森";
+    String writer = "村上春樹";
+
+    void dispName(){
+        System.out.println("本の名前は" + name + "です");
+    }
+
+}
+```
+
+となります。
+しかし、実行するメソッドが二つなのに対して、1つしか定義されていません。二つ目は自分で作る必要があるようです。
+先程名前を出すメソッドを作ったので、次はdispWriterの方ですね。
+
+```java
+public class Taisaku3_1{
+    public static void main(String[] args){
+
+        Book haruki = new Book();
+
+        haruki.dispName();
+        haruki.dispWriter();
+
+    }
+}
+
+
+class Book{
+    String name = "ノルウェイの森";
+    String writer = "村上春樹";
+
+    void dispName(){
+        System.out.println("本の名前は" + name + "です");
+    }
+
+    void dispWriter(){
+        System.out.println("著者は" + writer + "です");
+    }
+
+}
+```
+
+詳しい説明はほぼ名前と同じなので割愛しますが、このようになります。
+
+#期末2
+
+```java
+public Taisaku3_2{
+    public static void main(String[] args){
+        Cake muffin = new Cake();
+        Cake tart = new Cake();
+
+        muffin.setData("マフィン", 250);
+        muffin.dispPrice();
+        tart.setData("タルト", 380);
+        tart.dispPrice();
+    }
+}
+
+public Cake{}
+```
+
+はい。スライドではこうなっています。`Taisaku3_2`クラスは既に完成しているようですが、`Cake`の方は何も無いですね。
+
+では、まず`コンストラクタ`から見ていきましょう。インスタンス化した時に引数に何も指定してないですね。このため、コンストラクタはいらないです。
+
+次にメソッドです。`setData`と`dispPrice`があります。
+
+```java
+public Taisaku3_2{
+    public static void main(String[] args){
+        Cake muffin = new Cake();
+        Cake tart = new Cake();
+
+        muffin.setData("マフィン", 250);
+        muffin.dispPrice();
+        tart.setData("タルト", 380);
+        tart.dispPrice();
+    }
+}
+
+public Cake{
+
+    void setData(){}
+
+    void dispPrice(){}
+}
+```
+
+この二つのメソッドを定義します。
+次にこのメソッドの引数を見ます。
+文字列で名前、数値で値段を指定していることが分かります。
+
+文字列はString, 数値はintなので
+
+```java
+public Taisaku3_2{
+    public static void main(String[] args){
+        Cake muffin = new Cake();
+        Cake tart = new Cake();
+
+        muffin.setData("マフィン", 250);
+        muffin.dispPrice();
+        tart.setData("タルト", 380);
+        tart.dispPrice();
+    }
+}
+
+public Cake{
+
+    void setData(String namae, int nedan){}
+
+    void dispPrice(){}
+}
+```
+
+となります。
+しかし、このままではsetDataで指定した名前と値段はsetDataメソッドでしか使えません。そのためプロパティを用意してそこに引数に渡された値を代入してあげます。
+namaeは文字列、nedanは数値なので、それぞれ対応する変数、ここでは`name`と`price`を用意し、`name`を文字列、`price`を数値型で定義します。
+
+```java
+public Taisaku3_2{
+    public static void main(String[] args){
+        Cake muffin = new Cake();
+        Cake tart = new Cake();
+
+        muffin.setData("マフィン", 250);
+        muffin.dispPrice();
+        tart.setData("タルト", 380);
+        tart.dispPrice();
+    }
+}
+
+public Cake{
+    String name; //プロパティ
+    int price; //プロパティ
+
+    void setData(String namae, int nedan){
+        name = namae;
+        price = nedan;
+    }
+
+    void dispPrice(){}
+}
+```
+
+これで`setData`で指定された引数がCakeクラス内のどこででも、使えるようになりました。
+指定したら次は出力する必要があります。
+
+出力は`dispPrice`メソッドで行います。
+
+出力形式がマフィンは1個250円ですとなっています。マフィンは変数`name`に、250は変数`price`に入ってる値ですよね。
+これを置き換えるとnameは1個price円ですとなります
+
+```java
+public Taisaku3_2{
+    public static void main(String[] args){
+        Cake muffin = new Cake();
+        Cake tart = new Cake();
+
+        muffin.setData("マフィン", 250);
+        muffin.dispPrice();
+        tart.setData("タルト", 380);
+        tart.dispPrice();
+    }
+}
+
+public Cake{
+    String name; //プロパティ
+    int price; //プロパティ
+
+    void setData(String namae, int nedan){
+        name = namae;
+        price = nedan;
+    }
+
+    void dispPrice(){
+        System.out.println(name+"は1個"+price+"円です");
+    }
+}
+```
+
+となります。
+
+# 期末3
+
+```java
+
+public class Taisaku3_3{
+    public static void main(String[] args){
+        int[] code = {101, 103, 104, 107, 109, 110, 112, 999};
+        String[] name = { "クリップ","ボールペン","ファイル","替え芯", "消しゴム","マーカー","修正テープ"};
+        int[] price = {150, 200, 300, 180, 90, 120, 170 };
+        int x = 112; // 検索するコード
+    }
+}
+```
+
+まず、番兵法は目的のデータ(数字)を配列の最後に入れて100%見つかるようにするためのアルゴリズムです。これをするとなんか色々らくになるらしい。
+
+
+forとwhile両方解説しますが、まずはforから
+
+for文の`for ()`の中は`for(変数の初期化; ループ条件(YESの時にループ。Noになったら終了); 増分)`の3要素からなっています。
+
+1つ1つ見ていきます。
+
+変数の初期化: 
+
+今回はカウンター変数としてiを使います。その為`i=0`としますが、型を指定する必要があるので、`int i=0`とします。
+
+しかし、このままではiをfor文の中でしか使えません。なので
+
+```java
+
+int i;
+for (i=0 ...)
+```
+とします。
+
+ループ条件:
+
+配列をループさせる時、配列に10個しか要素が無いのに、11個目を探索しようとするとエラーが出ます。
+
+そのため `i<code.length`としてiがcodeの要素数より小さい事を条件に入れます。
+次に要素が一致したら、ストップさせたいので、`code[i] != x`とします。codeのi番目の要素とxが一致したらループを止めます。
+
+`==`が同じなのに対し、!=は`違う`を意味しています。
+
+この二つの条件を `&&`で繋げます。
+
+```java
+int i;
+for (i=0; i<code.length && code[i] != x; i++){}
+```
+増分の説明は省きますが、forはこうなります。`{}`の中は何も書く必要はありません。何もしないから。
+
+次に`while`です。
+
+whileの()の中は条件だけになっています。
+先程のforの条件を入れればOKです。
+
+```java
+int i=0;
+while (i<code.length && code[i] != x){
+    i++;
+}
+```
+
+こちらもwhileの前でiを定義してあげて、iを増やす所が無いので、{}の中でやります。
+
+そして、この`i`を使い、ループを抜けた後に`i`がcodeの要素数より少なかったら、見つかった旨を。同じだったら、見つからなかった旨を表示します。番兵法が見つけたい数字を配列の最後に入れる仕様だからね！！
+
+\nを挿入すると、その位置で改行されるので、printlnを複数個使う必要がなくなります。
+
+```java
+if (i<code.length){
+    System.out.println("商品番号: " + code[i] + "\n商品名  :" + name[i] + "\n単  価: " + price[i] + "円");
+}
+else {
+    System.out.println("該当の商品番号はありません");
+}
+
+```
+となります。
+
+printfを使う場合は
+```java
+if (i<code.length){
+    System.out.printf("商品番号: %3d\n商品名  : %5s\n単  価: %3d円" + code[i], name[i], price[i]);
+}
+else {
+    System.out.println("該当の商品番号はありません");
+}
+```
+となります。
+
+これを全て組み合わせると
+
+```java
+//for
+
+public class Taisaku3_3{
+    public static void main(String[] args){
+        int[] code = {101, 103, 104, 107, 109, 110, 112, 999};
+        String[] name = { "クリップ","ボールペン","ファイル","替え芯", "消しゴム","マーカー","修正テープ"};
+        int[] price = {150, 200, 300, 180, 90, 120, 170};
+        int x = 112; // 検索するコード
+        int i;
+        for (i = 0; i < code.length && code[i]!=x; i++) {
+        }
+
+        if (i<code.length){
+            System.out.println("商品番号: " + code[i] + "\n商品名  :" + name[i] + "\n単  価: " + price[i] + "円");
+        }
+        else {
+            System.out.println("該当の商品番号はありません");
+        }
+
+        //or
+
+        if (i<code.length){
+            System.out.printf("商品番号: %3d\n商品名  : %5s\n単  価: %3d円" + code[i], name[i], price[i]);
+        }
+        else {
+            System.out.println("該当の商品番号はありません");
+        }
+    }
+}```
+
+```java
+//while
+
+public class Taisaku3_3{
+    public static void main(String[] args){
+        int[] code = {101, 103, 104, 107, 109, 110, 112, 999};
+        String[] name = { "クリップ","ボールペン","ファイル","替え芯", "消しゴム","マーカー","修正テープ"};
+        int[] price = {150, 200, 300, 180, 90, 120, 170};
+        int x = 112; // 検索するコード
+        int i=0;
+        while(i < code.length && code[i]!=x) {
+            i++;
+        }
+
+        if (i<code.length){
+            System.out.println("商品番号: " + code[i] + "\n商品名  :" + name[i] + "\n単  価: " + price[i] + "円");
+        }
+        else {
+            System.out.println("該当の商品番号はありません");
+        }
+
+        //or
+
+        if (i<code.length){
+            System.out.printf("商品番号: %3d\n商品名  : %5s\n単  価: %3d円" + code[i], name[i], price[i]);
+        }
+        else {
+            System.out.println("該当の商品番号はありません");
+        }
+    }
+}```
